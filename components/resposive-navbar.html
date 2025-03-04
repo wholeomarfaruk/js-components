@@ -34,19 +34,29 @@
                
                 flex-basis: 100%;
                 order: 3;
-              
+               
                 position: relative;
-                max-height: 0;
+                max-height: 0px;
                 overflow: hidden;
-                transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+                transition: max-height 0.5s ease-in-out, opacity 1.5s ease-in-out, visibility 1.5s ease-in-out , padding 0.5s ease-in-out;
+              padding: 0;
+            }
+            .hamburger button{
+               
+                width: 40px;
+            }
+            .custom-nav:not(.open) {
+                max-height: 0px;
+                opacity: 0;
+                visibility: hidden;
             }
             .custom-nav.open {
+                padding: 10px 0;
                 visibility: visible;
                 opacity: 1;
-               
                 max-height: 100vh;
                 overflow: hidden;
-                animation: fadeIn 0.5s ease-in-out forwards;
+                transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, padding 0.5s ease-in-out;
             }
             .custom-nav ul{
                 gap: 3px !important;
@@ -106,7 +116,7 @@
                     </ul>
                 </nav>
                 <div class="hamburger">
-                    <button class="btn btn-primary" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+                    <button class="btn btn-primary " id="hamburger"><i class="fa-solid fa-bars"></i></button>
                 </div>
 
             </div>
@@ -122,10 +132,19 @@
     <script>
 
         const hamburger = document.getElementById('hamburger');
+        const hamburgerIcon = hamburger.getElementsByTagName('i')[0];
         const customNav = document.querySelector('.custom-nav');
 
         hamburger.addEventListener('click', () => {
             customNav.classList.toggle('open');
+            if (customNav.classList.contains('open')) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-times');
+            } else {
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+             
+            }
         });
 
 
