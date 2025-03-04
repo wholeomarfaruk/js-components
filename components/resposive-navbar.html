@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Omar JS Components</title>
+    <!-- bootstrap 5.3 css -->
+    <link href="/vendor/bootstrap/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!-- fontawesome 6.7 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <!-- Custom CSS -->
+    <style>
+        #header{
+           
+        }
+        .hamburger{
+            display: none;
+        }
+        .custom-nav {
+              
+            }
+        .nav-area{
+            position: relative;
+        }
+        @media (max-width: 992px) {
+            .hamburger{
+                display: block;
+            }
+            .custom-nav {
+                visibility: hidden;
+                opacity: 0;
+               
+                flex-basis: 100%;
+                order: 3;
+              
+                position: relative;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            }
+            .custom-nav.open {
+                visibility: visible;
+                opacity: 1;
+               
+                max-height: 100vh;
+                overflow: hidden;
+                animation: fadeIn 0.5s ease-in-out forwards;
+            }
+            .custom-nav ul{
+                gap: 3px !important;
+                width: 100%;
+            }
+            .custom-nav ul li a.nav-link {
+                border-radius: 5px;
+                padding: 5px 10px;
+                width: 100%;
+
+                text-align: center;
+                
+            }
+            .custom-nav ul li a.nav-link:hover {
+          
+                background-color: aquamarine;
+                transition: all 0.2s ease-in;
+            }
+            .custom-nav ul li .btn{
+                width: 100%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+               max-height: 0;
+                opacity: 0;
+              
+            }
+
+            to {
+                opacity: 1;
+                max-height: 100vh;
+              
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!-- heading  start ======================================= -->
+     <header id="header" class="shadow">
+        <div class="wrapper container">
+            <div class="nav-area  d-flex justify-content-between align-items-center flex-wrap">
+                <div class="logo" style="width: 60px;">
+                    <img src="../resources/js-logo.png" alt="Logo" class="w-100 " >
+                </div>
+                <nav class="custom-nav  navbar  navbar-expand-lg navbar-light">
+                    <ul class="navbar-nav gap-4">
+                        <li class="nav-item"> <a href="#" cLass="nav-link">Home</a></li>
+                        <li class="nav-item"> <a href="#" cLass="nav-link">About</a></li>
+                        <li class="nav-item"> <a href="#" cLass="nav-link">Blog</a></li>
+                        <li class="nav-item"> <a href="#" cLass="nav-link">Contact</a></li>
+                        <li class=""> <a href="#" cLass=" btn btn-primary">Login</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger">
+                    <button class="btn btn-primary" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+                </div>
+
+            </div>
+        </div>
+     </header>
+    <!-- heading  END ==========================================-->
+
+
+   
+
+
+    <!-- Custom JS  -->
+    <script>
+
+        const hamburger = document.getElementById('hamburger');
+        const customNav = document.querySelector('.custom-nav');
+
+        hamburger.addEventListener('click', () => {
+            customNav.classList.toggle('open');
+        });
+
+
+    </script>
+
+</body>
+
+</html>
