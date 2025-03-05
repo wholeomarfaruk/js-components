@@ -8,103 +8,92 @@
     <!-- bootstrap 5.3 css -->
     <link href="/vendor/bootstrap/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <!-- fontawesome 6.7 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+    <!-- fontawesome 6.7 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
     <!-- Custom CSS -->
     <style>
-        #header{
-           
-        }
-        .hamburger{
+        #header {}
+
+        .hamburger {
             display: none;
         }
-        .custom-nav {
-              
-            }
-        .nav-area{
+
+        .custom-nav {}
+
+        .nav-area {
             position: relative;
         }
+
         @media (max-width: 992px) {
-            .hamburger{
+            .hamburger {
                 display: block;
             }
+
+            .hamburger button {
+
+                width: 40px;
+            }
+
             .custom-nav {
-                visibility: hidden;
-                opacity: 0;
-               
                 flex-basis: 100%;
                 order: 3;
-               
+
+                /* animation  */
+                visibility: hidden;
+                opacity: 0;
                 position: relative;
                 max-height: 0px;
                 overflow: hidden;
-                transition: max-height 0.5s ease-in-out, opacity 1.5s ease-in-out, visibility 1.5s ease-in-out , padding 0.5s ease-in-out;
-              padding: 0;
+                transition: max-height 0.5s ease-in-out, opacity 1.5s ease-in-out, visibility 1.5s ease-in-out, padding 0.5s ease-in-out;
+                padding: 0;
             }
-            .hamburger button{
-               
-                width: 40px;
-            }
-            .custom-nav:not(.open) {
-                max-height: 0px;
-                opacity: 0;
-                visibility: hidden;
-            }
+
+
             .custom-nav.open {
+                /* animation  */
                 padding: 10px 0;
                 visibility: visible;
                 opacity: 1;
                 max-height: 100vh;
                 overflow: hidden;
-                transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, padding 0.5s ease-in-out;
+                transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, padding 0.5s ease-in-out, overflow 3s ease-in-out;
             }
-            .custom-nav ul{
+
+            .custom-nav ul {
                 gap: 3px !important;
                 width: 100%;
             }
+
             .custom-nav ul li a.nav-link {
                 border-radius: 5px;
                 padding: 5px 10px;
                 width: 100%;
 
                 text-align: center;
-                
+
             }
+
             .custom-nav ul li a.nav-link:hover {
-          
+
                 background-color: aquamarine;
                 transition: all 0.2s ease-in;
             }
-            .custom-nav ul li .btn{
+
+            .custom-nav ul li .btn {
                 width: 100%;
             }
         }
-
-        @keyframes fadeIn {
-            from {
-               max-height: 0;
-                opacity: 0;
-              
-            }
-
-            to {
-                opacity: 1;
-                max-height: 100vh;
-              
-            }
-        }
-
     </style>
 
 </head>
 
 <body>
     <!-- heading  start ======================================= -->
-     <header id="header" class="shadow">
+    <header id="header" class="shadow">
         <div class="wrapper container">
             <div class="nav-area  d-flex justify-content-between align-items-center flex-wrap">
                 <div class="logo" style="width: 60px;">
-                    <img src="../resources/js-logo.png" alt="Logo" class="w-100 " >
+                    <img src="../resources/js-logo.png" alt="Logo" class="w-100 ">
                 </div>
                 <nav class="custom-nav  navbar  navbar-expand-lg navbar-light">
                     <ul class="navbar-nav gap-4">
@@ -121,11 +110,11 @@
 
             </div>
         </div>
-     </header>
+    </header>
     <!-- heading  END ==========================================-->
 
 
-   
+
 
 
     <!-- Custom JS  -->
@@ -135,16 +124,37 @@
         const hamburgerIcon = hamburger.getElementsByTagName('i')[0];
         const customNav = document.querySelector('.custom-nav');
 
+        let timer;
         hamburger.addEventListener('click', () => {
             customNav.classList.toggle('open');
+           
+            // change icon
             if (customNav.classList.contains('open')) {
                 hamburgerIcon.classList.remove('fa-bars');
                 hamburgerIcon.classList.add('fa-times');
+
             } else {
                 hamburgerIcon.classList.remove('fa-times');
                 hamburgerIcon.classList.add('fa-bars');
+
+                // hide overflow
+                if(customNav.style.overflow == 'auto'){ // if auto found reutrn true else false
+                    customNav.style.overflow = 'hidden';
+                }
              
+
             }
+            // clear timeout
+            clearTimeout(timer); 
+           
+            timer = setTimeout(() => {
+                // add overflow
+                if (customNav.classList.contains('open')) {
+                    customNav.style.overflow = 'auto';
+                }
+
+            }, 3000);
+           
         });
 
 
