@@ -1,0 +1,17 @@
+/* Global CSS start============================================== */
+.cursor-pointer {
+    cursor: pointer;
+}
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 99;
+  }
+/* Global CSS end============================================== */

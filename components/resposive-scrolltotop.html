@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Resposive sticky header single page scroll menu | Omar JS Components
+    </title>
+    <!-- bootstrap 5.3 css -->
+    <link
+      href="/vendor/bootstrap/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- fontawesome 6.7 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../custom/style.css" />
+    <style>
+      #header {
+        background-color: #fff;
+      }
+
+      .hamburger {
+        display: none;
+      }
+
+      .custom-nav {
+      }
+      .custom-nav ul li .nav-link {
+        border-radius: 5px;
+        padding: 10px 16px !important;
+        width: 100%;
+        text-align: center;
+      }
+      .custom-nav ul li .nav-link:hover {
+        background-color: aquamarine;
+        transition: all 0.2s ease-in;
+        color: #000;
+      }
+      .custom-nav ul li .nav-link.active {
+        background-color: aquamarine;
+        transition: all 0.2s ease-in;
+        color: #000;
+      }
+
+      .nav-area {
+        position: relative;
+      }
+
+      @media (max-width: 992px) {
+        .hamburger {
+          display: block;
+        }
+
+        .hamburger button {
+          width: 40px;
+        }
+
+        .custom-nav {
+          flex-basis: 100%;
+          order: 3;
+
+          /* animation  */
+          visibility: hidden;
+          opacity: 0;
+          position: relative;
+          max-height: 0px;
+          overflow: hidden;
+          transition: max-height 0.5s ease-in-out, opacity 1.5s ease-in-out,
+            visibility 1.5s ease-in-out, padding 0.5s ease-in-out;
+          padding: 0;
+        }
+
+        .custom-nav.open {
+          /* animation  */
+          padding: 10px 0;
+          visibility: visible;
+          opacity: 1;
+          max-height: 100vh;
+          overflow: hidden;
+          transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out,
+            visibility 0.5s ease-in-out, padding 0.5s ease-in-out,
+            overflow 3s ease-in-out;
+        }
+
+        .custom-nav ul {
+          gap: 3px !important;
+          width: 100%;
+        }
+
+        .custom-nav ul li .nav-link {
+          border-radius: 5px;
+          padding: 5px 10px !important;
+
+          width: 100%;
+
+          text-align: center;
+        }
+
+        .custom-nav ul li .nav-link:hover {
+          background-color: aquamarine;
+          transition: all 0.2s ease-in;
+        }
+
+        .custom-nav ul li .btn {
+          width: 100%;
+        }
+      }
+      .sticky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 999;
+
+        animation: sticky 0.5s ease-in-out;
+      }
+      @keyframes sticky {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- heading  start ======================================= -->
+    <header id="header" class="shadow">
+      <div class="wrapper container">
+        <div
+          class="nav-area d-flex justify-content-between align-items-center flex-wrap"
+        >
+          <div class="logo" style="width: 60px">
+            <img src="../resources/js-logo.png" alt="Logo" class="w-100" />
+          </div>
+          <nav class="custom-nav navbar navbar-expand-lg navbar-light">
+            <ul class="navbar-nav gap-2">
+              <li class="nav-item">
+                <a
+                  class="nav-link cursor-pointer active menu-item"
+                  data-menu="hero"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link cursor-pointer menu-item" data-menu="about"
+                  >About</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link cursor-pointer menu-item"
+                  data-menu="services"
+                  >Services</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link cursor-pointer menu-item" data-menu="contact"
+                  >Contact</a
+                >
+              </li>
+              <li class=""><a href="#" class="btn btn-primary">Login</a></li>
+            </ul>
+          </nav>
+          <div class="hamburger">
+            <button class="btn btn-light border" id="hamburger">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section
+      id="hero"
+      class="vh-100 bg-primary text-white d-flex justify-content-center align-items-center section"
+    >
+      <span>Hero area</span>
+    </section>
+    <section
+      id="about"
+      class="vh-100 bg-secondary d-flex justify-content-center align-items-center section"
+    >
+      <span>About Us</span>
+    </section>
+    <section
+      id="services"
+      class="vh-100 bg-warning d-flex justify-content-center align-items-center section"
+    >
+      <span>Oure Services</span>
+    </section>
+    <section
+      id="contact"
+      class="vh-100 bg-info d-flex justify-content-center align-items-center section"
+    >
+      <span>Contact Us</span>
+    </section>
+    <footer
+      id="footer"
+      class="vh-100 d-flex justify-content-center align-items-center"
+    >
+      <span>Footer</span>
+    </footer>
+    <!-- heading  END ==========================================-->
+
+   
+    <section id="external">
+
+       <!-- scroll to top start  -->
+      <button
+        class="scroll-to-top-btn"
+        onclick="scrollToTop()"
+        style="display: none"
+      >
+        <i class="fa-solid fa-arrow-up"></i>
+      </button>
+      <script>
+        function scrollToTop() { //scroll to top method
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      </script>
+
+       <!-- scroll to top start  -->
+    </section>
+
+    <!-- Custom JS  -->
+    <script>
+      // open class on click hamburger to toggle menu on mobile start ============
+
+      const hamburger = document.getElementById("hamburger");
+      const hamburgerIcon = hamburger.getElementsByTagName("i")[0];
+      const customNav = document.querySelector(".custom-nav");
+      const sections = document.getElementsByClassName("section");
+      let timer;
+      hamburger.addEventListener("click", () => {
+        customNav.classList.toggle("open");
+
+        // change icon
+        if (customNav.classList.contains("open")) {
+          hamburgerIcon.classList.remove("fa-bars");
+          hamburgerIcon.classList.add("fa-times");
+        } else {
+          hamburgerIcon.classList.remove("fa-times");
+          hamburgerIcon.classList.add("fa-bars");
+
+          // hide overflow
+          if (customNav.style.overflow == "auto") {
+            // if auto found reutrn true else false
+            customNav.style.overflow = "hidden";
+          }
+        }
+        // clear timeout
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+          // add overflow
+          if (customNav.classList.contains("open")) {
+            customNav.style.overflow = "auto";
+          }
+        }, 3000);
+      });
+      // open class on click hamburger to toggle menu on mobile end ============
+      // header sticky on scroll start ============
+     
+  
+      // header sticky on scroll End ============
+    </script>
+    <script>
+      const elementIsInView = (el) => {
+        const scroll = window.scrollY || window.pageYOffset;
+        const boundsTop = el.getBoundingClientRect().top + scroll;
+
+        const viewport = {
+          top: scroll,
+          bottom: scroll + window.innerHeight,
+        };
+
+        const bounds = {
+          top: boundsTop,
+          bottom: boundsTop + el.clientHeight,
+        };
+
+        return (
+          (bounds.bottom >= viewport.top && bounds.bottom <= viewport.bottom) ||
+          (bounds.top <= viewport.bottom && bounds.top >= viewport.top)
+        );
+      };
+
+      window.onscroll = function () {
+
+        // header sticky on scroll start
+        var scroll = document.documentElement.scrollTop;
+        
+        if (scroll > 250) {
+          document.getElementById("header").classList.add("sticky");
+        } else {
+          document.getElementById("header").classList.remove("sticky");
+        }
+        // header sticky on scroll end
+
+        //scroll to top start
+        if (scroll > 450) {
+          document.getElementsByClassName(
+            "scroll-to-top-btn"
+          )[0].style.display = "block";
+        } else {
+          document.getElementsByClassName(
+            "scroll-to-top-btn"
+          )[0].style.display = "none";
+        }
+        //scroll to top end
+
+    
+// menu active start when section in viewport
+        Array.prototype.forEach.call(sections, (section) => {
+          console.log("section id: " + section.id);
+          if (elementIsInView(section)) {
+            console.log("Viewport matched for id: " + section.id);
+            const menuItems = document.getElementsByClassName("menu-item");
+            Array.prototype.forEach.call(menuItems, (menuItem) => {
+              menuItem.classList.remove("active");
+              if (menuItem.getAttribute("data-menu") == section.id) {
+                menuItem.classList.add("active");
+              }
+            });
+          }
+        });
+      };
+    </script>
+  
+
+</body>
+</html>
