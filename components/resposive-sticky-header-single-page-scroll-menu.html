@@ -259,16 +259,20 @@
       const elementIsInView = (el) => {
         const scroll = window.scrollY || window.pageYOffset;
         const boundsTop = el.getBoundingClientRect().top + scroll;
+        console.log(el)
+        console.log(el.getBoundingClientRect())
 
         const viewport = {
           top: scroll,
           bottom: scroll + window.innerHeight,
         };
+      
 
         const bounds = {
           top: boundsTop,
           bottom: boundsTop + el.clientHeight,
         };
+        console.log("scrooll: "+scroll+ "boun top:"+boundsTop)
 
         return (
           (bounds.bottom >= viewport.top && bounds.bottom <= viewport.bottom) ||
@@ -279,7 +283,7 @@
       window.onscroll = function () {
         // header sticky on scroll start
         var scroll = document.documentElement.scrollTop;
-        console.log(scroll);
+      
         if (scroll > 250) {
           document.getElementById("header").classList.add("sticky");
         } else {
@@ -289,9 +293,9 @@
 
         // menu active start when section in viewport
         Array.prototype.forEach.call(sections, (section) => {
-          console.log("section id: " + section.id);
+          
           if (elementIsInView(section)) {
-            console.log("Viewport matched for id: " + section.id);
+            // console.log("Viewport matched for id: " + section.id);
             const menuItems = document.getElementsByClassName("menu-item");
             Array.prototype.forEach.call(menuItems, (menuItem) => {
               menuItem.classList.remove("active");
@@ -302,6 +306,9 @@
           }
         });
       };
+
+
+
     </script>
     <!--  menu active start when section in viewport end =========== -->
   </body>
