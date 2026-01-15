@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Hero Section</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    background-color: #1a1a1a; /* Darker background looks better with 3D */
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background: radial-gradient(#333, #000);
+}
+
+.slider {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 15%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 25s linear infinite;
+    z-index: 5;
+}
+
+@keyframes autoRun {
+    from { transform: perspective(1000px) rotateX(-15deg) rotateY(0deg); }
+    to { transform: perspective(1000px) rotateX(-15deg) rotateY(360deg); }
+}
+
+.item {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(550px);
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 50px;
+    box-sizing: border-box;
+    z-index: 4;
+}
+
+.content h1 {
+    font-size: 10vw;
+    font-weight: 700;
+    line-height: 0.8em;
+    color: #444;
+    position: relative;
+    margin: 0;
+}
+
+.content h1::after {
+    position: absolute;
+    inset: 0;
+    content: attr(data-content);
+    -webkit-text-stroke: 1px #fff;
+    color: transparent;
+    z-index: 10;
+}
+
+.author {
+    text-align: right;
+    max-width: 300px;
+}
+
+/* Fallback model image using a stylish 3D object from Unsplash */
+.model {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 600px;
+    background: url('../resources/images/trophy-with-love.png') no-repeat bottom center;
+    background-size: contain;
+    z-index: 4;
+    pointer-events: none;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0));
+}
+    </style>
+</head>
+<body>
+
+    <div class="banner">
+        <div class="slider" id="imageSlider" style="--quantity: 10">
+            </div>
+
+        <div class="content">
+            <h1 data-content="CREATIVE">CREATIVE</h1>
+            <div class="author">
+                <h2>GEMINI</h2>
+                <p><b>3D Web Design</b></p>
+                <p>Modern hero section using CSS 3D transforms and Unsplash images.</p>
+            </div>
+            <div class="model"></div>
+        </div>
+    </div>
+
+    <script>
+        // Array of free high-quality Unsplash image IDs
+        const images = [
+            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80",
+ 
+        ];
+
+        const slider = document.getElementById('imageSlider');
+        images.forEach((url, index) => {
+            const item = document.createElement('div');
+            item.className = 'item';
+            item.style.setProperty('--position', index + 1);
+            item.innerHTML = `<img src="${url}" alt="3D Item">`;
+            slider.appendChild(item);
+        });
+    </script>
+</body>
+</html>

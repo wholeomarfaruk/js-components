@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Explorer | Modern Slider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    overflow: hidden; /* Prevent scroll while on slider */
+}
+
+/* --- Header --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: 0.5s;
+}
+
+header .logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+header .logo span {
+    color: #00d2ff;
+}
+
+.desktop-nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.desktop-nav ul li {
+    margin-left: 35px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Hover Effect for Nav Links */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: #00d2ff;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* --- Hamburger Menu --- */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu-toggle span {
+    width: 28px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100%;
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+    padding: 100px 40px;
+    transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar-links {
+    list-style: none;
+}
+
+.sidebar-links li {
+    margin-bottom: 30px;
+}
+
+.sidebar-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.sidebar-links a:hover {
+    color: #00d2ff;
+    padding-left: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* --- Swiper Slider --- */
+.swiper {
+    width: 100%;
+    height: 100vh;
+}
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.content {
+    max-width: 900px;
+    padding: 0 20px;
+    color: #fff;
+}
+
+.content h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    transform: translateY(50px);
+    opacity: 0;
+}
+
+.content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    transform: translateY(50px);
+    opacity: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 35px;
+    background: #00d2ff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+    transform: translateY(50px);
+    opacity: 0;
+}
+
+/* Button Hover */
+.btn:hover {
+    background: #fff;
+    color: #00d2ff;
+    transform: translateY(-5px) !important;
+}
+
+/* Animation for Active Slide */
+.swiper-slide-active .content h1,
+.swiper-slide-active .content p,
+.swiper-slide-active .content .btn {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.swiper-slide-active .content p { animation-delay: 0.2s; }
+.swiper-slide-active .content .btn { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom Swiper UI */
+.swiper-button-next, .swiper-button-prev {
+    color: #fff !important;
+}
+
+.swiper-pagination-bullet {
+    background: #fff !important;
+    opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+    background: #00d2ff !important;
+    width: 30px;
+    border-radius: 5px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+    .desktop-nav { display: none; }
+    .menu-toggle { display: flex; }
+    header { padding: 20px 5%; }
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Travel<span>.</span></a>
+        
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">Destinations</a></li>
+                <li><a href="#" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="menu-toggle" id="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn">&times;</div>
+        <ul class="sidebar-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Destinations</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80');">
+                <div class="content">
+                    <h1>Explore The World</h1>
+                    <p>Experience the beauty of nature in its purest form.</p>
+                    <a href="#" class="btn">Explore Now</a>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80');">
+                <div class="content">
+                    <h1>Mountain Escape</h1>
+                    <p>Find peace among the highest peaks on Earth.</p>
+                    <a href="#" class="btn">View Tours</a>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80');">
+                <div class="content">
+                    <h1>Tropical Paradise</h1>
+                    <p>Crystal clear waters and golden sandy beaches.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script >
+        // Initialize Swiper
+const swiper = new Swiper(".mySwiper", {
+    loop: true,
+    speed: 1200,
+    effect: 'fade', // Smooth transitions
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+
+// Sidebar Toggle Logic
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const sidebar = document.getElementById('sidebar');
+const closeBtn = document.querySelector('.close-btn');
+
+mobileMenuBtn.addEventListener('click', () => {
+    sidebar.classList.add('active');
+});
+
+closeBtn.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+});
+
+// Close sidebar on link click
+const sidebarLinks = document.querySelectorAll('.sidebar-links a');
+sidebarLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+    });
+});
+
+// Header scroll effect
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    header.classList.toggle('sticky', window.scrollY > 50);
+});
+    </script>
+</body>
+</html>
