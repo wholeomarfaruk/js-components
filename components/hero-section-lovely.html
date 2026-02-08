@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Responsive Hero Section</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+    --primary: #6c5ce7;
+    --primary-dark: #5649c0;
+    --text-main: #2d3436;
+    --text-gray: #636e72;
+    --white: #ffffff;
+    --bg-light: #f9faff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* Header & Navbar */
+header {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0 5%;
+    transition: 0.3s;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    padding: 12px 30px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo { font-size: 22px; font-weight: 700; }
+.logo span { color: var(--primary); }
+
+.desktop-menu { display: flex; list-style: none; gap: 30px; }
+.desktop-menu a { 
+    text-decoration: none; 
+    color: var(--text-main); 
+    font-weight: 500; 
+    transition: 0.3s;
+}
+.desktop-menu a:hover, .desktop-menu a.active { color: var(--primary); }
+
+.nav-right { display: flex; align-items: center; gap: 20px; }
+
+/* Buttons Styling */
+.btn-signin {
+    background: transparent;
+    border: 1.5px solid #ddd;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-signin:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-register {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 11px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(108, 92, 231, 0.3);
+}
+
+.btn-register:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.menu-toggle { font-size: 32px; cursor: pointer; display: none; color: var(--primary); }
+
+/* Hero Section */
+.hero { padding: 180px 5% 100px; }
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-content { flex: 1; }
+.top-badge {
+    background: #eeebff;
+    color: var(--primary);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hero-content h1 {
+    font-size: 58px;
+    line-height: 1.1;
+    margin: 20px 0;
+}
+
+.hero-content h1 span { color: var(--primary); }
+.hero-content p { color: var(--text-gray); font-size: 18px; line-height: 1.6; margin-bottom: 40px; }
+
+.hero-btns { display: flex; align-items: center; gap: 30px; }
+
+.btn-main {
+    text-decoration: none;
+    background: var(--primary);
+    color: white;
+    padding: 18px 35px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-main:hover { transform: scale(1.05); background: var(--primary-dark); }
+
+/* Watch Demo Button (Large) */
+.btn-watch {
+    text-decoration: none;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.play-btn {
+    width: 65px;
+    height: 65px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: var(--primary);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.4s;
+}
+
+.btn-watch:hover .play-btn {
+    background: var(--primary);
+    color: white;
+    transform: rotate(360deg);
+}
+
+/* Visuals & Floating Cards */
+.hero-visual { flex: 1; position: relative; }
+.image-box { position: relative; width: 100%; }
+.main-img { width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+
+.float-card {
+    position: absolute;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    animation: float 4s ease-in-out infinite;
+}
+
+.float-card img { width: 45px; height: 45px; border-radius: 50%; }
+.float-card strong { display: block; font-size: 16px; }
+.float-card p { font-size: 12px; color: var(--text-gray); }
+
+.icon-bg { width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; }
+.yellow { background: #f1c40f; }
+.blue { background: #3498db; }
+
+.card-1 { top: 10%; left: -15%; }
+.card-2 { bottom: 10%; left: -10%; animation-delay: 1s; }
+.card-3 { top: 40%; right: -10%; animation-delay: 2s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Offcanvas Sidebar */
+.offcanvas {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    height: 100%;
+    background: white;
+    z-index: 2000;
+    transition: 0.5s;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.offcanvas.active { right: 0; }
+.offcanvas-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
+.close-menu { font-size: 35px; cursor: pointer; }
+.offcanvas-links { list-style: none; }
+.offcanvas-links li { margin-bottom: 25px; }
+.offcanvas-links a { text-decoration: none; font-size: 20px; color: var(--text-main); font-weight: 500; }
+.offcanvas-btns { margin-top: auto; display: flex; flex-direction: column; gap: 15px; }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1500;
+    display: none;
+}
+.overlay.active { display: block; }
+
+/* Responsive Media Queries */
+@media (max-width: 1100px) {
+    .hero-container { flex-direction: column; text-align: center; }
+    .hero-content h1 { font-size: 45px; }
+    .hero-btns { justify-content: center; }
+    .hero-visual { margin-top: 50px; width: 80%; }
+    .desktop-only, .desktop-menu { display: none; }
+    .menu-toggle { display: block; }
+}
+
+@media (max-width: 600px) {
+    .hero-btns { flex-direction: column; width: 100%; }
+    .btn-main, .btn-watch { width: 100%; justify-content: center; }
+    .card-1, .card-3 { left: 0; right: 0; margin: auto; width: fit-content; }
+}
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <nav class="navbar">
+            <div class="logo">Devly<span>Code</span></div>
+            
+            <ul class="nav-links desktop-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Mentors</a></li>
+                <li><a href="#">Pricing</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="auth-btns desktop-only">
+                    <button class="btn-signin">Sign In</button>
+                    <button class="btn-register">Register</button>
+                </div>
+                <div class="menu-toggle" id="menuOpen">
+                    <i class='bx bx-menu-alt-right'></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="offcanvas" id="offcanvasMenu">
+        <div class="offcanvas-header">
+            <div class="logo">Devly<span>Code</span></div>
+            <div class="close-menu" id="menuClose"><i class='bx bx-x'></i></div>
+        </div>
+        <ul class="offcanvas-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Mentors</a></li>
+            <li><a href="#">Pricing</a></li>
+        </ul>
+        <div class="offcanvas-btns">
+            <button class="btn-signin">Sign In</button>
+            <button class="btn-register">Register</button>
+        </div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="top-badge">✨ 100% Online Learning</span>
+                <h1>Master Your Skills With <span>Expert</span> Tutors</h1>
+                <p>Unlock your potential by learning from industry experts. Access high-quality courses and start your journey towards a successful career today.</p>
+                
+                <div class="hero-btns">
+                    <a href="#" class="btn-main">Explore Courses</a>
+                    <a href="#" class="btn-watch">
+                        <div class="play-btn"><i class='bx bx-play'></i></div>
+                        <span>Watch Demo</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="image-box">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop" alt="Learning" class="main-img">
+                    
+                    <div class="float-card card-1">
+                        <img src="https://i.pravatar.cc/100?u=1" alt="User">
+                        <div>
+                            <strong>2k+</strong>
+                            <p>Students</p>
+                        </div>
+                    </div>
+
+                    <div class="float-card card-2">
+                        <div class="icon-bg yellow"><i class='bx bxs-star'></i></div>
+                        <div>
+                            <strong>4.9/5</strong>
+                            <p>Top Ratings</p>
+                        </div>
+                    </div>
+
+                    <div class="float-card card-3">
+                        <div class="icon-bg blue"><i class='bx bxs-badge-check'></i></div>
+                        <div>
+                            <strong>Verified</strong>
+                            <p>Expert Mentors</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script >
+        const menuOpen = document.getElementById('menuOpen');
+const menuClose = document.getElementById('menuClose');
+const offcanvas = document.getElementById('offcanvasMenu');
+const overlay = document.getElementById('overlay');
+
+// Open Menu
+menuOpen.addEventListener('click', () => {
+    offcanvas.classList.add('active');
+    overlay.classList.add('active');
+});
+
+// Close Menu
+const closeFunc = () => {
+    offcanvas.classList.remove('active');
+    overlay.classList.remove('active');
+};
+
+menuClose.addEventListener('click', closeFunc);
+overlay.addEventListener('click', closeFunc);
+
+// Close on link click
+document.querySelectorAll('.offcanvas-links a').forEach(link => {
+    link.addEventListener('click', closeFunc);
+});
+
+// Scroll Header Effect
+window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    if (window.scrollY > 50) {
+        header.style.top = "0";
+        header.style.padding = "0";
+        document.querySelector('.navbar').style.borderRadius = "0";
+        document.querySelector('.navbar').style.background = "#fff";
+    } else {
+        header.style.top = "20px";
+        header.style.padding = "0 5%";
+        document.querySelector('.navbar').style.borderRadius = "50px";
+        document.querySelector('.navbar').style.background = "rgba(255, 255, 255, 0.8)";
+    }
+});
+    </script>
+</body>
+</html>
